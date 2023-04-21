@@ -38,4 +38,30 @@ public class GcdOfString {
         }
         return stringBuffer.toString().equals(dividend);
     }
+
+    /*
+    * 1. 如果 str1 和 str2 连接不等，无解
+    * 2. 如果有解，答案是最大公因数长度的字串
+     */
+    public String gcdOfStrings2(String str1, String str2) {
+        if (!str1.concat(str2).equals(str2.concat(str1))) {
+            return "";
+        }
+        return str1.substring(0, gcd1(str1.length(), str2.length()));
+    }
+
+    private int gcd(int len1, int len2) {
+        return len2 == 0 ? len1 : gcd(len2, len1 % len2);
+    }
+
+    private int gcd1(int a, int b) {
+
+        int remainder = a % b;
+        while (remainder != 0) {
+            a = b;
+            b = remainder;
+            remainder = a % b;
+        }
+        return b;
+    }
 }
