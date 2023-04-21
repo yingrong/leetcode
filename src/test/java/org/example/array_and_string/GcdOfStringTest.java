@@ -14,6 +14,8 @@ class GcdOfStringTest {
 
         return Stream.of(
                 Arguments.of("ABC", "ABCABC", "ABC"),
+                Arguments.of("ABCABCABC", "ABCABC", "ABC"),
+                Arguments.of("AAA", "AAAAAAA", "A"),
                 Arguments.of("ABCABC", "ABCABCABCABC", "ABCABC"),
                 Arguments.of("ABC", "ABCABCD", "")
         );
@@ -23,5 +25,6 @@ class GcdOfStringTest {
     @MethodSource("stringPairProvider")
     void gcdOfString(String str1, String str2, String gcdString) {
         assertEquals(gcdString, new GcdOfString().gcdOfStrings1(str1, str2));
+        assertEquals(gcdString, new GcdOfString().gcdOfStrings2(str1, str2));
     }
 }
